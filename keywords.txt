@@ -1,0 +1,34 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+BluetoothSerial	KEYWORD1
+BluetoothSerialJoystick KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+setDisplay KEYWORD2
+sendAlert KEYWORD2
+writeSerial KEYWORD2
+readSerial KEYWORD2
+clearBuffer KEYWORD2
+isButtonPressed KEYWORD2
+getMessage KEYWORD2
+getJoystick KEYWORD2
+begin KEYWORD2
+
+updateValues KEYWORD2
+getX KEYWORD2
+getY KEYWORD2
+getRotationDeg KEYWORD2
+getRotationRad KEYWORD2
+getMagnitude KEYWORD2
+
+######################################
+# Constants (LITERAL1)
+#######################################
