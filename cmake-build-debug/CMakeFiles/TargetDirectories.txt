@@ -1,3 +1,0 @@
-/Users/henryabrahamsen/Desktop/Projects/Ardunio/Bluetooth Serial Library/cmake-build-debug/CMakeFiles/Bluetooth_Serial_Library.dir
-/Users/henryabrahamsen/Desktop/Projects/Ardunio/Bluetooth Serial Library/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/henryabrahamsen/Desktop/Projects/Ardunio/Bluetooth Serial Library/cmake-build-debug/CMakeFiles/rebuild_cache.dir
