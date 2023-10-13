@@ -6,25 +6,22 @@
    Details available at https://docs.henhen1227.com/
 */
 
-import BluetoothSerial;
+#include <BluetoothSerial.h>
 
-#define bluetoothModuleSerial Serial1;
+#define bluetoothModuleSerial Serial1
 
 // Create a BluetoothSerial object
-BluetoothSerial blueSerial;
+// Serial port that the bluetooth module is connected
+// Verbose mode: true
+BluetoothSerial blueSerial(bluetoothModuleSerial, true);
 
 void setup() {
     // Start communication with bluetooth device
     bluetoothModuleSerial.begin(9600);
-
-    // Initialize the BluetoothSerial object
-    // Baud rate: 9600
-    // Verbose mode: false
-    blueSerial = new BluetoothSerial(9600, false);
+    Serial.begin(9600);
 
     Serial.println("Setup Complete");
 }
-
 
 void loop() {
     blueSerial.readSerial();
