@@ -8,17 +8,19 @@
 #define BluetoothSerial_h
 
 #include <Arduino.h>
-#include <set>
-#include <map>
 #include "BluetoothSerialJoystick.h"
+
+#define MAX_BUTTONS 20 // Maximum number of buttons
+#define MAX_JOYSTICKS 20 // Maximum number of joysticks
+
 
 class BluetoothSerial {
 private:
     HardwareSerial* _serial;
     bool _verbose;
-    std::set<int> _buttonsList;
-    std::set<int> _joysticksUpdatedList;
-    std::map<int, BluetoothSerialJoystick> _joysticksList;
+    bool _buttonsList[MAX_BUTTONS];
+    bool _joysticksUpdatedList[MAX_JOYSTICKS];
+    BluetoothSerialJoystick _joysticksList[MAX_JOYSTICKS];
 
     /**
      * Reads input from the serial connection until the specified terminator character

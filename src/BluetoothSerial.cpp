@@ -20,33 +20,30 @@ void BluetoothSerial::begin(int baudRate /*= 9600*/) {
 }
 
 void BluetoothSerial::readSerial(char terminator /* = '\n' */, int terminatingTimeout /* = 50 */) {
-    clearBuffer();
+    clearBuffer(); // Resets the tracking arrays
     while (_serial->available()) {
-        String str = readStringUntil(terminator, terminatingTimeout);  // Get letter from buffer
+        String str = readStringUntil(terminator, terminatingTimeout); // Get command from buffer
 
         if (_verbose) {
-            Serial.println("BS received: `" + str + "`");  // Print out the command
+            Serial.println("BS received: `" + str + "`"); // Print out the command
         }
 
         if (str == "") return;
 
         if (str.startsWith("B")) {
             int newButton = str.substring(1).toInt();
-            _buttonsList.insert(newButton);
+            if (newButton >= 0 && newButton < MAX_BUTTONS) {
+                _buttonsList[newButton] = true; // Mark button as pressed
+            }
         } else if (str.startsWith("J")) {
             String jValues = str.substring(1);
             double values[2];
             int id;
 
             int numValues = sscanf(jValues.c_str(), "%d:%lf,%lf", &id, &values[0], &values[1]);
-            if (numValues == 3) {
-                if (_joysticksList.count(id) > 0) {
-                    _joysticksList[id].updateValues(values[0], values[1]);
-                } else {
-                    _joysticksList[id] = BluetoothSerialJoystick(values[0], values[1]);
-                }
-
-                _joysticksUpdatedList.insert(id);
+            if (numValues == 3 && id >= 0 && id < MAX_JOYSTICKS) {
+                _joysticksList[id].updateValues(values[0], values[1]);
+                _joysticksUpdatedList[id] = true; // Mark joystick as updated
             } else {
                 if (_verbose) {
                     Serial.println("Error with BluetoothSerial Library!");
@@ -90,20 +87,30 @@ void BluetoothSerial::setDisplay(String message, int id) {
 }
 
 void BluetoothSerial::clearBuffer() {
-    _buttonsList.clear();
-    _joysticksUpdatedList.clear();
+    for (int i = 0; i < MAX_BUTTONS; i++) {
+        _buttonsList[i] = false;
+    }
+    for (int i = 0; i < MAX_JOYSTICKS; i++) {
+        _joysticksUpdatedList[i] = false;
+    }
 }
 
 bool BluetoothSerial::isButtonPressed(int id) {
-    return _buttonsList.count(id) > 0;
+    if (id >= 0 && id < MAX_BUTTONS) {
+        return _buttonsList[id];
+    }
+    return false;
 }
 
 bool BluetoothSerial::isJoystickUpdated(int id) {
-    return _joysticksUpdatedList.count(id) > 0;
+    if (id >= 0 && id < MAX_JOYSTICKS) {
+        return _joysticksUpdatedList[id];
+    }
+    return false;
 }
 
 BluetoothSerialJoystick BluetoothSerial::getJoystick(int id) {
-    if (_joysticksList.count(id) > 0) {
+    if (id >= 0 && id < MAX_JOYSTICKS) {
         return _joysticksList[id];
     } else {
         return BluetoothSerialJoystick(0, 0);  // returns empty object
