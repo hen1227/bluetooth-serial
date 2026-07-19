@@ -1,31 +1,21 @@
 /*
    Boiler_Plate.ino
-   Henry Abrahamsen
-   8/12/23
-   Basic code "required" for all BluetoothSerial Projects
-   Details available at https://docs.henhen1227.com/
+   Bluetooth Serial Connect — minimum project scaffold.
 */
 
-#include <BluetoothSerial.h>
+#include <BluetoothSerialConnect.h>
 
-#define bluetoothModuleSerial Serial1
-
-// Create a BluetoothSerial object
-// Serial port that the bluetooth module is connected
-// Verbose mode: true
-BluetoothSerial blueSerial(bluetoothModuleSerial, true);
+BluetoothSerialConnect serialConnect(Serial1, true);
 
 void setup() {
-    // Start communication with bluetooth device
-    bluetoothModuleSerial.begin(9600);
-    Serial.begin(9600);
+  Serial.begin(9600);
+  serialConnect.begin(9600);
 
-    Serial.println("Setup Complete");
+  Serial.println("Setup complete");
 }
 
 void loop() {
-    blueSerial.readSerial();
+  serialConnect.readSerial();
 
-    // Do awesome stuff here!
-    // 🍀 Good Luck 🍀!
+  // Read app controls and send app updates here.
 }

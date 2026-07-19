@@ -1,53 +1,39 @@
 /*
    Hello_World.ino
-   Henry Abrahamsen
-   8/12/23
-   Simple code using the basic features of Bluetooth Serial
-   Details available at https://docs.henhen1227.com/
+   Bluetooth Serial Connect — the smallest complete example.
+
+   Pairs with the "Hello World" example board in the app (Templates -> Examples).
+   It has a Button on channel 0 and a Text Display on channel 0.
 */
 
-#include <BluetoothSerial.h>
+#include <BluetoothSerialConnect.h>
 
-#define bluetoothModuleSerial Serial1
+BluetoothSerialConnect serialConnect(Serial1, true);
 
-// Create a BluetoothSerial object
-// Serial port that the bluetooth module is connected
-// Verbose mode: true
-BluetoothSerial blueSerial(bluetoothModuleSerial, true);
+int pressCount = 0;
 
 void setup() {
-  // Start communication with bluetooth device
-  bluetoothModuleSerial.begin(9600);
   Serial.begin(9600);
+  serialConnect.begin(9600);
 
-  Serial.println("Setup Complete");
+  Serial.println("Setup complete");
 }
 
-
 void loop() {
-  blueSerial.readSerial();
+  serialConnect.readSerial();
 
-  // If the button with id `B0`
-  if (blueSerial.isButtonPressed(0)) {
-    Serial.println("The button `B0` has been pressed!");
+  if (serialConnect.wasButtonPressed(0)) {
+    pressCount++;
 
-    // Send alert to the BluetoothSerial Connect App
-    blueSerial.sendAlert("Hello from the Arduino");
+    Serial.println("Button B0 pressed!");
+    serialConnect.sendAlert("Hello from the Arduino!");
+    serialConnect.setDisplay(String("Presses: ") + pressCount, 0);
   }
 
-  // Check if the Joystick with id `J0` has updated
-  if (blueSerial.isJoystickUpdated(0)) {
-      
-    // Get the Joystick object
-    BluetoothSerialJoystick joystick = blueSerial.getJoystick(0);
+  if (serialConnect.hasMessage()) {
+    String text = serialConnect.getMessage();
 
-    // Get the Joysticks rotation and magnitude
-    String rotation = String(joystick.getRotationDeg(), 0);
-    String magnitude = String(joystick.getMagnitude() * 100, 0); // As a percent %
-
-    /// String(a, 0) is the double a with 0 trailing zeros as a String
-
-    // Update the display inside the BluetoothSerial Connect App
-    blueSerial.setDisplay("Joystick: " + rotation + "deg, " + magnitude + "%", 0);
+    Serial.println(String("Console: ") + text);
+    serialConnect.setDisplay(text, 0);
   }
 }

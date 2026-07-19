@@ -1,15 +1,15 @@
 /*
-  BluetoothSerialJoystick.h - Easy Connections to Bluetooth
+  BluetoothSerialConnectJoystick.h - Bluetooth Serial Connect joystick value
   Created by Henry Abrahamsen, March 3, 2023
   Released into the public domain.
 */
 
-#ifndef BLUETOOTH_SERIAL_JOYSTICK_H
-#define BLUETOOTH_SERIAL_JOYSTICK_H
+#ifndef BLUETOOTH_SERIAL_CONNECT_JOYSTICK_H
+#define BLUETOOTH_SERIAL_CONNECT_JOYSTICK_H
 
 #include <Arduino.h>
 
-class BluetoothSerialJoystick {
+class BluetoothSerialConnectJoystick {
 private:
     double rotationDeg;  // Rotation of the joystick in degrees
     double rotationRad;  // Rotation of the joystick in radians
@@ -19,7 +19,7 @@ public:
     /**
      * Default constructor initializing joystick values to zero.
      */
-    BluetoothSerialJoystick();
+    BluetoothSerialConnectJoystick();
 
     /**
      * Parameterized constructor for joystick values.
@@ -27,7 +27,7 @@ public:
      * @param rot Initial rotation value in degrees.
      * @param mag Initial magnitude or distance from center.
      */
-    BluetoothSerialJoystick(double rot, double mag);
+    BluetoothSerialConnectJoystick(double rot, double mag);
 
     /**
      * Update joystick rotation and magnitude values.

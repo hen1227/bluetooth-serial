@@ -6,8 +6,11 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-BluetoothSerial	KEYWORD1
-BluetoothSerialJoystick KEYWORD1
+BluetoothSerialConnect	KEYWORD1
+BluetoothSerialConnectJoystick KEYWORD1
+BluetoothSerialConnectProtocol KEYWORD1
+BluetoothSerialConnectDpadDirection KEYWORD1
+BluetoothSerialConnectError KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -18,9 +21,40 @@ writeSerial KEYWORD2
 readSerial KEYWORD2
 clearBuffer KEYWORD2
 isButtonPressed KEYWORD2
+isJoystickUpdated KEYWORD2
 getMessage KEYWORD2
+hasMessage KEYWORD2
 getJoystick KEYWORD2
 begin KEYWORD2
+lastError KEYWORD2
+lastErrorMessage KEYWORD2
+clearError KEYWORD2
+setButtonPrefix KEYWORD2
+setJoystickPrefix KEYWORD2
+setConsolePrefix KEYWORD2
+setAlertPrefix KEYWORD2
+setDisplayPrefix KEYWORD2
+setButtonSuffix KEYWORD2
+setJoystickSuffix KEYWORD2
+setConsoleSuffix KEYWORD2
+setInputSuffix KEYWORD2
+setOutputSuffix KEYWORD2
+setProtocol KEYWORD2
+protocol KEYWORD2
+wasButtonReleased KEYWORD2
+wasButtonPressed KEYWORD2
+wasButtonRepeated KEYWORD2
+isToggleOn KEYWORD2
+wasToggleUpdated KEYWORD2
+isSliderUpdated KEYWORD2
+getSlider KEYWORD2
+isDpadPressed KEYWORD2
+wasDpadPressed KEYWORD2
+wasDpadReleased KEYWORD2
+wasDpadRepeated KEYWORD2
+setLabel KEYWORD2
+setIndicator KEYWORD2
+setGauge KEYWORD2
 
 updateValues KEYWORD2
 getX KEYWORD2
@@ -32,3 +66,24 @@ getMagnitude KEYWORD2
 ######################################
 # Constants (LITERAL1)
 #######################################
+BluetoothSerialConnectLegacy LITERAL1
+BluetoothSerialConnectModern LITERAL1
+BluetoothSerialConnectMaxChannel LITERAL1
+BluetoothSerialConnectDpadUp LITERAL1
+BluetoothSerialConnectDpadDown LITERAL1
+BluetoothSerialConnectDpadLeft LITERAL1
+BluetoothSerialConnectDpadRight LITERAL1
+BluetoothSerialConnectDpadUpLeft LITERAL1
+BluetoothSerialConnectDpadUpRight LITERAL1
+BluetoothSerialConnectDpadDownLeft LITERAL1
+BluetoothSerialConnectDpadDownRight LITERAL1
+BluetoothSerialConnectDpadCenter LITERAL1
+BluetoothSerialConnectNoError LITERAL1
+BluetoothSerialConnectInputOverflow LITERAL1
+BluetoothSerialConnectMessageOverflow LITERAL1
+BluetoothSerialConnectInvalidButtonId LITERAL1
+BluetoothSerialConnectInvalidJoystickMessage LITERAL1
+BluetoothSerialConnectInvalidJoystickId LITERAL1
+BluetoothSerialConnectInvalidProtocolConfig LITERAL1
+BluetoothSerialConnectInvalidModernMessage LITERAL1
+BluetoothSerialConnectInvalidChannel LITERAL1
